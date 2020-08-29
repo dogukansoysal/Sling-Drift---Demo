@@ -59,7 +59,6 @@
      <Compile Include="Assets\Scripts\GameManager.cs" />
      <Compile Include="Assets\Scripts\Helpers\Utils\GameConstants.cs" />
      <Compile Include="Assets\Scripts\InputManager.cs" />
-     <Compile Include="Assets\Scripts\LevelGenerator.cs" />
      <Compile Include="Assets\Scripts\PlayerController.cs" />
      <Compile Include="Assets\Scripts\Road.cs" />
      <Compile Include="Assets\Scripts\RoadManager.cs" />

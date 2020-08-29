@@ -5,22 +5,33 @@ using DG.Tweening;
 using UnityEngine;
 using UnityEngine.XR;
 
+/// <summary>
+/// Player controller script which contains the mechanics of the game, the user's actions and the fundamentals of Gameplay.
+/// </summary>
 public class PlayerController : MonoBehaviour
 {
 
     public float SpeedForce;
-    //public float DriftFactor = 0.8f;
+    //public float DriftFactor = 0.8f;     //TODO: Implement drift factor depending on speed.
     public GameObject PoleInZone;
     public GameObject ConnectedPole;
     
+    
+    /* Component definition */
     private Rigidbody _rigidbody;
-
+    private LineRenderer _lineRenderer;
     private Tweener currentTween;
+    
+    
+    
     private void Awake()
     {
         _rigidbody = transform.GetComponent<Rigidbody>();
+        _lineRenderer = transform.GetComponent<LineRenderer>();
+        _lineRenderer.positionCount = 2;
     }
 
+    
     
     private void Update()
     {
@@ -43,6 +54,7 @@ public class PlayerController : MonoBehaviour
     }
 
     
+    
     void FixedUpdate()
     {
         if (GameManager.Instance.GameState != GameConstants.GameState.Playable)
@@ -54,6 +66,8 @@ public class PlayerController : MonoBehaviour
         Move();
     }
 
+    
+    
     /// <summary>
     /// Movement handler.
     /// </summary>
@@ -62,6 +76,8 @@ public class PlayerController : MonoBehaviour
         _rigidbody.velocity = new Vector3(transform.forward.x * SpeedForce, _rigidbody.velocity.y, transform.forward.z * SpeedForce);
     }
 
+    
+    
     /// <summary>
     /// Set velocity and angular velocity to zero.
     /// </summary>
@@ -71,47 +87,70 @@ public class PlayerController : MonoBehaviour
         _rigidbody.angularVelocity = Vector3.zero;
     }
     
+    
+    
     /// <summary>
-    /// 
+    /// Reset angular velocity to avoid the drag to the outside of the road.
     /// </summary>
     private void ResetAngularVelocity()
     {
         _rigidbody.angularVelocity = Vector3.zero;
     }
     
+    
+    
     /// <summary>
-    /// 
+    /// Create a connection between pole
     /// </summary>
     private void ConnectToPole()
     {
-        currentTween.Kill();
+        if (currentTween != null && currentTween.IsActive())
+            currentTween.Kill();
+        
         ConnectedPole = PoleInZone;
         
         PoleInZone.GetComponent<FixedJoint>().connectedBody = _rigidbody;
+
+        _lineRenderer.positionCount = 2;
+        _lineRenderer.SetPosition(0, Vector3.zero);
+        _lineRenderer.SetPosition(1, transform.InverseTransformPoint(ConnectedPole.transform.position) + Vector3.up);
     }
     
     
+    
+    /// <summary>
+    /// Release the connection between pole
+    /// </summary>
     private void ReleasePole()
     {
+        if(!ConnectedPole) return;
+        
         ConnectedPole.GetComponent<FixedJoint>().connectedBody = null;
         ResetAngularVelocity();
         
-        if (currentTween.IsActive())
-            currentTween.Pause();
+
 
         var angle = Vector3.Angle(transform.forward,
             ConnectedPole.transform.parent.parent.GetComponent<Road>().EndPosition.forward);
 
-        Debug.Log(angle);
+        //Debug.Log(angle);
+        //transform.forward = ConnectedPole.transform.parent.parent.GetComponent<Road>().EndPosition.forward;     //TEST
         
         if (angle < 60)
         {
+            if (currentTween != null && currentTween.IsActive())
+                currentTween.Kill();
+            
             currentTween = transform.DOLookAt(transform.position + ConnectedPole.transform.parent.parent.GetComponent<Road>().EndPosition.forward * 1000, angle/75).SetEase(Ease.InOutBack, 4);
         }
-
+        
         ConnectedPole = null;
+        
+        _lineRenderer.positionCount = 0;
     }
 
+    
+    
     public IEnumerator FinishAnimation()
     {
         Sequence sequence = DOTween.Sequence();
@@ -123,7 +162,7 @@ public class PlayerController : MonoBehaviour
         sequence.Append(transform.DORotate(new Vector3(0, 0, 7.5f), 1.9f, RotateMode.LocalAxisAdd)
             .SetEase(Ease.OutElastic));
             
-        sequence.Insert(0,transform.DOMoveZ(transform.position.z + 15f, 1.25f).SetEase(Ease.OutSine));
+        sequence.Insert(0,transform.DOMove(transform.position + (transform.forward * 5f), 1.25f).SetEase(Ease.OutSine));
             
         while (sequence.active)
         {
@@ -131,6 +170,13 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    
+    
+    /// <summary>
+    /// Obsolete Calculation of direction function.
+    /// DIRECTIONS: LEFT, RIGHT, FORWARD, BACK
+    /// </summary>
+    /// <returns>Vector of closest rotation direction.</returns>
     private Vector3 CalculateClosestDirection()
     {
         var closestAngle = float.MaxValue;
@@ -179,7 +225,14 @@ public class PlayerController : MonoBehaviour
         }
         else if (other.CompareTag("Obstacle"))
         {
+            ReleasePole();
             GameManager.Instance.Fail();
+        }
+        else if (other.CompareTag("Finish"))
+        {
+            ReleasePole();
+            StartCoroutine(FinishAnimation());
+            GameManager.Instance.Success();
         }
     }
 

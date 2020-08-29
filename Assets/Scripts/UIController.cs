@@ -81,7 +81,7 @@ public class UIController : MonoBehaviour
     {
         if (component == null) return;
         
-        var levelIndex = GameManager.Instance.GetCurrentSceneIndex();
+        var levelIndex = GameManager.Instance.GetCurrentLevelIndex();
         if (levelIndex == 0)
         {
             component.GetComponent<TextMeshProUGUI>().text = "TUTORIAL";
@@ -89,7 +89,7 @@ public class UIController : MonoBehaviour
         }
         else
         {
-            component.GetComponent<TextMeshProUGUI>().text = "LEVEL " + (SceneManager.GetActiveScene().buildIndex);
+            component.GetComponent<TextMeshProUGUI>().text = "LEVEL " + levelIndex;
         }
     }
 

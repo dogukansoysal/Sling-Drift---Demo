@@ -4,11 +4,15 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using static GameConstants;
 
+/// <summary>
+/// Game loop management, Scene management, State handling will be defined in here.
+/// </summary>
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;    // Singleton pattern **Instance**
     public GameState GameState;
 
+    private int CurrentLevelIndex;
     //public int totalJumpingPadCount;
     
     private void Awake()
@@ -23,7 +27,7 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        //GameState = GameState.Menu;
+        GameState = GameState.Menu;
     }
 
     // Update is called once per frame
@@ -33,6 +37,17 @@ public class GameManager : MonoBehaviour
     }
 
 
+
+    public int GetCurrentLevelIndex()
+    {
+        CurrentLevelIndex = PlayerPrefs.GetInt("LevelIndex");
+        return CurrentLevelIndex;
+    }
+    
+    
+    
+    
+    
     #region Game Event Management
 
     public void Play()
@@ -48,6 +63,7 @@ public class GameManager : MonoBehaviour
 
     public void Success()
     {
+        PlayerPrefs.SetInt("LevelIndex",  PlayerPrefs.GetInt("LevelIndex") + 1);
         GameState = GameState.Menu;
         UIController.Instance.ShowPanel(2);
     }
@@ -100,7 +116,7 @@ public class GameManager : MonoBehaviour
     // Open Random Scene except Tutorial scene
     public void RandomScene()
     {
-        SceneManager.LoadScene(Random.Range(1, SceneManager.sceneCountInBuildSettings));    // SceneIndex 0 accepted as the Tutorial scene, so that it will be ignored.
+        SceneManager.LoadScene(Random.Range(0, SceneManager.sceneCountInBuildSettings));    // SceneIndex 0 accepted as the Tutorial scene, so that it will be ignored.
     }
 
 

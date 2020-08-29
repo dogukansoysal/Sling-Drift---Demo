@@ -9,12 +9,15 @@ public class RoadManager : MonoBehaviour
 {
     public static RoadManager Instance;
     
+    [Tooltip("Length of total road of the level.")]
     public int RoadLength;
 
+    /* Prefabs */
     public List<GameObject> TurnPrefabs;
     public GameObject RoadStraightPrefab;
     public GameObject PolePrefab;
-
+    public GameObject FinishPrefab;
+    
     public List<GameObject> Roads;
     public List<GameObject> Poles;
 
@@ -32,17 +35,22 @@ public class RoadManager : MonoBehaviour
 
     public void Start()
     {
+        RoadLength = GameManager.Instance.GetCurrentLevelIndex() * Random.Range(0,3) + 15;
         GenerateRoad();
     }
     
     
-    
+    /// <summary>
+    /// Main function of road generation.
+    /// </summary>
     public void GenerateRoad()
     {
+        /* INITIAL ROAD PARTS */
         Roads.Add(Instantiate(RoadStraightPrefab));
         Roads.Add(Instantiate(RoadStraightPrefab));
         Roads[1].transform.position = Roads[0].transform.position + (Roads[0].transform.GetComponent<Road>().EndPosition.forward * 10);
 
+        /* ROAD GENERRATION */
         for (var i = 0; i < RoadLength; i++)
         {
             GameObject generatedRoad = new GameObject();
@@ -95,10 +103,20 @@ public class RoadManager : MonoBehaviour
 
             Roads.Add(generatedRoad);
         }
+        
+        /* Finish zone generation    */
+        var finishGO = Instantiate(FinishPrefab);
+        finishGO.transform.forward = Roads[Roads.Count - 1].GetComponent<Road>().EndPosition.forward;
+        finishGO.transform.position = Roads[Roads.Count - 1].transform.GetComponent<Road>().EndPosition.position +
+                                      (Roads[Roads.Count - 1].transform.GetComponent<Road>().EndPosition.forward * 5);
     }
 
 
-
+    /// <summary>
+    /// Returns the closest pole to the player.
+    /// </summary>
+    /// <param name="source"></param>
+    /// <returns>Returns GameObject of the closest pole</returns>
     public GameObject GetClosestPole(Transform source)
     {
         var index = -1;

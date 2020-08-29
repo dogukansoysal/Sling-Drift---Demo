@@ -30,7 +30,6 @@
             </e>
           </e>
           <e p="InputManager.cs" t="Include" />
-          <e p="LevelGenerator.cs" t="Include" />
           <e p="PlayerController.cs" t="Include" />
           <e p="Road.cs" t="Include" />
           <e p="RoadManager.cs" t="Include" />
