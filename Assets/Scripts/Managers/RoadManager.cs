@@ -36,7 +36,7 @@ public class RoadManager : MonoBehaviour
 
     public void Start()
     {
-        RoadLength = GameManager.Instance.GetCurrentLevelIndex() * Random.Range(0,3) + 15;
+        RoadLength = Random.Range(15,35);
         GenerateRoad();
     }
     

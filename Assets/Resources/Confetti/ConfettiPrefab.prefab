@@ -1,67 +1,5 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &-6772886796938903610
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 6616583704993567147}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 3086549049131016629}
-  m_Layer: 0
-  m_Name: Missing Prefab (Dummy)
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &3086549049131016629
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 8144605801558945822, guid: d2795eb1dc9165641b0c58b97fa404e2,
-    type: 3}
-  m_PrefabInstance: {fileID: 6616583704993567147}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: -6772886796938903610}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 5660371120522989194}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1897472470355473416
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 6616583704993567147}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 5660371120522989194}
-  m_Layer: 0
-  m_Name: Confeti (1) (Missing Prefab)
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &5660371120522989194
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 6616583704993567147}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1897472470355473416}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children:
-  - {fileID: 3086549049131016629}
-  m_Father: {fileID: 3086549049995464127}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &3086549049995370453
 GameObject:
   m_ObjectHideFlags: 0
@@ -74,7 +12,7 @@ GameObject:
   - component: {fileID: 3086549050013887071}
   - component: {fileID: 3086549050015262069}
   m_Layer: 0
-  m_Name: Confeti
+  m_Name: ConfettiPrefab
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -90,8 +28,7 @@ Transform:
   m_LocalRotation: {x: -0.7071068, y: 0, z: 0, w: 0.7071068}
   m_LocalPosition: {x: 24.32, y: 12.493, z: -87.806}
   m_LocalScale: {x: 1.6, y: 1.6, z: 1.6}
-  m_Children:
-  - {fileID: 5660371120522989194}
+  m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}
@@ -213,8 +150,8 @@ ParticleSystem:
     startSpeed:
       serializedVersion: 2
       minMaxState: 3
-      scalar: 10
-      minScalar: 2
+      scalar: 12
+      minScalar: 3
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -311,8 +248,8 @@ ParticleSystem:
     startSize:
       serializedVersion: 2
       minMaxState: 3
-      scalar: 0.2
-      minScalar: 0.05
+      scalar: 0.22
+      minScalar: 0.04
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -597,7 +534,7 @@ ParticleSystem:
     gravityModifier:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 0.4
+      scalar: 0.37
       minScalar: 0.4
       maxCurve:
         serializedVersion: 2
@@ -966,7 +903,7 @@ ParticleSystem:
       countCurve:
         serializedVersion: 2
         minMaxState: 0
-        scalar: 125
+        scalar: 130
         minScalar: 125
         maxCurve:
           serializedVersion: 2
@@ -2152,8 +2089,8 @@ ParticleSystem:
     x:
       serializedVersion: 2
       minMaxState: 3
-      scalar: 0.3
-      minScalar: -0.3
+      scalar: 0.4
+      minScalar: -0.4
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -2187,8 +2124,8 @@ ParticleSystem:
     y:
       serializedVersion: 2
       minMaxState: 3
-      scalar: 0.3
-      minScalar: -0.3
+      scalar: 0.4
+      minScalar: -0.4
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -2222,8 +2159,8 @@ ParticleSystem:
     z:
       serializedVersion: 2
       minMaxState: 3
-      scalar: 0.3
-      minScalar: -0.3
+      scalar: 0.4
+      minScalar: -0.4
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -2482,7 +2419,7 @@ ParticleSystem:
       serializedVersion: 2
       minMaxState: 3
       scalar: 1
-      minScalar: 0.5
+      minScalar: 0.6
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -2517,7 +2454,7 @@ ParticleSystem:
     inWorldSpace: 0
     multiplyDragByParticleSize: 1
     multiplyDragByParticleVelocity: 1
-    dampen: 0.21
+    dampen: 0.22
     drag:
       serializedVersion: 2
       minMaxState: 0
@@ -4685,97 +4622,3 @@ ParticleSystemRenderer:
   m_Mesh2: {fileID: 0}
   m_Mesh3: {fileID: 0}
   m_MaskInteraction: 0
---- !u!1001 &6616583704993567147
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 3086549049995464127}
-    m_Modifications:
-    - target: {fileID: 8144605801544718334, guid: d2795eb1dc9165641b0c58b97fa404e2,
-        type: 3}
-      propertyPath: InitialModule.startLifetime.minScalar
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 8144605801544718334, guid: d2795eb1dc9165641b0c58b97fa404e2,
-        type: 3}
-      propertyPath: InitialModule.startLifetime.scalar
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 8144605801558945822, guid: d2795eb1dc9165641b0c58b97fa404e2,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8144605801558945822, guid: d2795eb1dc9165641b0c58b97fa404e2,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 2.4406245
-      objectReference: {fileID: 0}
-    - target: {fileID: 8144605801558945822, guid: d2795eb1dc9165641b0c58b97fa404e2,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8144605801558945822, guid: d2795eb1dc9165641b0c58b97fa404e2,
-        type: 3}
-      propertyPath: m_LocalRotation.x
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8144605801558945822, guid: d2795eb1dc9165641b0c58b97fa404e2,
-        type: 3}
-      propertyPath: m_LocalRotation.y
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8144605801558945822, guid: d2795eb1dc9165641b0c58b97fa404e2,
-        type: 3}
-      propertyPath: m_LocalRotation.z
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8144605801558945822, guid: d2795eb1dc9165641b0c58b97fa404e2,
-        type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8144605801558945822, guid: d2795eb1dc9165641b0c58b97fa404e2,
-        type: 3}
-      propertyPath: m_RootOrder
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8144605801558945822, guid: d2795eb1dc9165641b0c58b97fa404e2,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: -90
-      objectReference: {fileID: 0}
-    - target: {fileID: 8144605801558945822, guid: d2795eb1dc9165641b0c58b97fa404e2,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8144605801558945822, guid: d2795eb1dc9165641b0c58b97fa404e2,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8144605801558945822, guid: d2795eb1dc9165641b0c58b97fa404e2,
-        type: 3}
-      propertyPath: m_LocalScale.x
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8144605801558945822, guid: d2795eb1dc9165641b0c58b97fa404e2,
-        type: 3}
-      propertyPath: m_LocalScale.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8144605801558945822, guid: d2795eb1dc9165641b0c58b97fa404e2,
-        type: 3}
-      propertyPath: m_LocalScale.z
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8144605801559237236, guid: d2795eb1dc9165641b0c58b97fa404e2,
-        type: 3}
-      propertyPath: m_Name
-      value: Confeti (1)
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: d2795eb1dc9165641b0c58b97fa404e2, type: 3}
