@@ -13,6 +13,7 @@ public class GameManager : MonoBehaviour
     public GameState GameState;
 
     private int CurrentLevelIndex;
+    public GameObject ConfettiGO;
     //public int totalJumpingPadCount;
     
     private void Awake()
@@ -63,6 +64,7 @@ public class GameManager : MonoBehaviour
 
     public void Success()
     {
+        ConfettiGO.SetActive(true);
         PlayerPrefs.SetInt("LevelIndex",  PlayerPrefs.GetInt("LevelIndex") + 1);
         GameState = GameState.Menu;
         UIController.Instance.ShowPanel(2);

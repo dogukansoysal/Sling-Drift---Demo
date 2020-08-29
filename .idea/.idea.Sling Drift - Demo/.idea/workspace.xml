@@ -26,10 +26,10 @@
         <option value="$PROJECT_DIR$/Assets/Scripts/Helpers/Utils/GameConstants.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Road.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/RoadGenerator.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/GameManager.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/RoadManager.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/UIController.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/PlayerController.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/GameManager.cs" />
       </list>
     </option>
   </component>
@@ -73,7 +73,7 @@
       <updated>1598353660700</updated>
       <workItem from="1598353672267" duration="5165000" />
       <workItem from="1598611841067" duration="19238000" />
-      <workItem from="1598684593939" duration="3470000" />
+      <workItem from="1598684593939" duration="4097000" />
     </task>
     <servers />
   </component>
