@@ -1,4 +1,0 @@
-#Sat Aug 29 12:59:37 GMT+03:00 2020
-base.0=D\:\\Onemli\\Oyunlar\\Unity\\Sling Drift - Demo\\Temp\\gradleOut\\build\\intermediates\\transforms\\dexMerger\\release\\0
-path.0=classes.dex
-renamed.0=classes.dex
