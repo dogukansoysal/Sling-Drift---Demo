@@ -18,6 +18,7 @@ public class GameManager : MonoBehaviour
     
     private void Awake()
     {
+        // Singleton Pattern initialization.
         if (Instance != null)
         {
             Destroy(Instance);
@@ -25,20 +26,18 @@ public class GameManager : MonoBehaviour
         Instance = this;
     }
     
-    // Start is called before the first frame update
+
     void Start()
     {
         GameState = GameState.Menu;
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 
-
-
+    
+    /// <summary>
+    /// Returns the current level index.
+    /// </summary>
+    /// <returns>Returns integer Level Index.</returns>
     public int GetCurrentLevelIndex()
     {
         CurrentLevelIndex = PlayerPrefs.GetInt("LevelIndex");
@@ -48,7 +47,9 @@ public class GameManager : MonoBehaviour
     
     
     
-    
+    /// <summary>
+    /// All Game Loop events will be handled in this region.
+    /// </summary>
     #region Game Event Management
 
     public void Play()

@@ -7,7 +7,7 @@ using Random = UnityEngine.Random;
 
 public class RoadManager : MonoBehaviour
 {
-    public static RoadManager Instance;
+    public static RoadManager Instance;    // Singleton pattern **Instance**
     
     [Tooltip("Length of total road of the level.")]
     public int RoadLength;
@@ -23,6 +23,7 @@ public class RoadManager : MonoBehaviour
 
     public void Awake()
     {
+        // Singleton Pattern initialization.
         if (Instance != null)
         {
             Destroy(Instance);
@@ -60,9 +61,11 @@ public class RoadManager : MonoBehaviour
             var beforeLastRoad = Roads[Roads.Count - 2];
 
             
-            
+            // Random value will be used as road prefab selection.
             var randomValue = Random.Range(0, TurnPrefabs.Count * 2);
             
+            // If the random value greater of equal then turn prefabs count, we will generate a straight road.
+            // If the last two road is also a turn prefab, we should now generate a straight road regardless to whatever the random value is.
             if (randomValue >= TurnPrefabs.Count || (lastRoad.GetComponent<Road>().RoadType != RoadType.Straight && beforeLastRoad.GetComponent<Road>().RoadType == RoadType.Straight))    // %50 Straight, %50 Turning && Put turn only after straight roads
             {
                 //Generate straight road
@@ -88,7 +91,10 @@ public class RoadManager : MonoBehaviour
                         isFound = true;
                     }
                 }
-
+                
+                // Check if last road is straight.
+                // If it's, we need to generate a pole to that corner
+                // But the last road is also a corner, it will have it's own pole so we shouldn't generate new one.
                 if (lastRoad.GetComponent<Road>().RoadType == RoadType.Straight)
                 {
                     var pole = Instantiate(PolePrefab, generatedRoad.transform.GetComponent<Road>().PolePosition);
